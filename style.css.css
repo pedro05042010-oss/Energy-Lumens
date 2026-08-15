@@ -1,0 +1,2730 @@
+/* =====================================================
+RESET
+===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Inter", sans-serif;
+    background: #f7faf8;
+    color: #10251c;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+.container {
+    width: min(1180px, calc(100% - 40px));
+    margin: 0 auto;
+}
+
+
+/* =====================================================
+ANIMAÇÕES GERAIS
+===================================================== */
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(45px);
+    transition: opacity .8s ease, transform .8s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.fade-left {
+    opacity: 0;
+    transform: translateX(-45px);
+    transition: opacity .8s ease, transform .8s ease;
+}
+
+.fade-left.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.fade-right {
+    opacity: 0;
+    transform: translateX(45px);
+    transition: opacity .8s ease, transform .8s ease;
+}
+
+.fade-right.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.scale-in {
+    opacity: 0;
+    transform: scale(.92);
+    transition: opacity .8s ease, transform .8s ease;
+}
+
+.scale-in.visible {
+    opacity: 1;
+    transform: scale(1);
+}
+
+
+/* =====================================================
+HEADER
+===================================================== */
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 18px 0;
+    transition: .3s;
+}
+
+.header.scrolled {
+    background: rgba(255,255,255,.94);
+    backdrop-filter: blur(14px);
+    box-shadow: 0 8px 30px rgba(0,0,0,.06);
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+}
+
+.logo-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 13px;
+    display: grid;
+    place-items: center;
+    background: #dff54c;
+    color: #173422;
+    font-size: 23px;
+    box-shadow: 0 8px 25px rgba(223,245,76,.25);
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+}
+
+.logo-text strong {
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.logo-text small {
+    margin-top: 4px;
+    font-size: 8px;
+    letter-spacing: 2px;
+    opacity: .6;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+}
+
+.nav a {
+    font-size: 13px;
+    font-weight: 600;
+    opacity: .72;
+    transition: .25s;
+}
+
+.nav a:hover {
+    opacity: 1;
+    color: #126b45;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    border-radius: 12px;
+    padding: 13px 20px;
+    font-size: 13px;
+    font-weight: 700;
+    transition: .25s;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-header {
+    background: #173d2b;
+    color: white;
+}
+
+.btn-header:hover {
+    transform: translateY(-2px);
+}
+
+.btn-primary {
+    background: #dff54c;
+    color: #142719;
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(223,245,76,.25);
+}
+
+.btn-secondary {
+    border: 1px solid rgba(255,255,255,.25);
+    color: white;
+}
+
+.calculator-card .btn-secondary {
+    border: 1px solid #d8e3db;
+    background: transparent;
+    color: #126b45;
+}
+
+.menu-toggle {
+    display: none;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 25px;
+    height: 2px;
+    background: #173d2b;
+    margin: 5px;
+}
+
+
+/* =====================================================
+HERO
+===================================================== */
+
+.hero {
+    min-height: 760px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    background:
+        radial-gradient(
+            circle at 80% 30%,
+            rgba(223,245,76,.16),
+            transparent 28%
+        ),
+        linear-gradient(
+            135deg,
+            #10291c,
+            #173d2b 55%,
+            #0d2418
+        );
+    color: white;
+}
+
+.hero-glow {
+    position: absolute;
+    width: 550px;
+    height: 550px;
+    right: -150px;
+    top: 100px;
+    border-radius: 50%;
+    background: rgba(223,245,76,.08);
+    filter: blur(10px);
+    animation: heroGlow 7s ease-in-out infinite;
+}
+
+@keyframes heroGlow {
+    0%,100% {
+        transform: scale(1);
+        opacity: .7;
+    }
+
+    50% {
+        transform: scale(1.15);
+        opacity: 1;
+    }
+}
+
+.hero-container {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-content {
+    max-width: 720px;
+    padding-top: 80px;
+}
+
+.hero-tag,
+.section-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.hero-tag span {
+    width: 8px;
+    height: 8px;
+    background: #dff54c;
+    border-radius: 50%;
+    animation: pulseDot 2s infinite;
+}
+
+@keyframes pulseDot {
+    0% {
+        box-shadow: 0 0 0 0 rgba(223,245,76,.6);
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgba(223,245,76,0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(223,245,76,0);
+    }
+}
+
+.hero h1 {
+    margin-top: 25px;
+    font-size: clamp(50px,7vw,88px);
+    line-height: .98;
+    letter-spacing: -4px;
+}
+
+.hero h1 span,
+.section-heading h2 span,
+.about-content h2 span {
+    color: #dff54c;
+}
+
+.hero-description {
+    max-width: 600px;
+    margin-top: 30px;
+    font-size: 17px;
+    color: rgba(255,255,255,.68);
+}
+
+.hero-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 34px;
+}
+
+.hero-benefits {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    margin-top: 35px;
+}
+
+.benefit {
+    font-size: 12px;
+    color: rgba(255,255,255,.72);
+}
+
+.benefit span {
+    color: #dff54c;
+    font-weight: 800;
+    margin-right: 6px;
+}
+
+
+/* =====================================================
+STATS
+===================================================== */
+
+.stats {
+    background: white;
+    border-bottom: 1px solid #e7eee9;
+}
+
+.stats-container {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+}
+
+.stat {
+    padding: 30px;
+    text-align: center;
+    border-right: 1px solid #e7eee9;
+}
+
+.stat:last-child {
+    border-right: none;
+}
+
+.stat strong {
+    display: block;
+    color: #126b45;
+    font-size: 30px;
+}
+
+.stat span {
+    color: #738079;
+    font-size: 12px;
+}
+
+
+/* =====================================================
+SEÇÕES
+===================================================== */
+
+.section {
+    padding: 110px 0;
+}
+
+.section-dark {
+    background: #10291c;
+    color: white;
+}
+
+.section-heading {
+    max-width: 650px;
+    margin-bottom: 55px;
+}
+
+.section-tag {
+    color: #126b45;
+    margin-bottom: 15px;
+}
+
+.section-dark .section-tag {
+    color: #dff54c;
+}
+
+.section-heading h2,
+.about-content h2 {
+    font-size: clamp(38px,5vw,60px);
+    line-height: 1;
+    letter-spacing: -2px;
+}
+
+.section-heading p {
+    margin-top: 18px;
+    color: #77827c;
+}
+
+.section-dark .section-heading p {
+    color: rgba(255,255,255,.55);
+}
+
+
+/* =====================================================
+SOBRE
+===================================================== */
+
+.about-container {
+    display: grid;
+    grid-template-columns: 1.15fr .85fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.about-content h2 {
+    font-size: clamp(34px,4.5vw,52px);
+    line-height: 1.05;
+    letter-spacing: -1.5px;
+}
+
+.about-content > p {
+    margin-top: 18px;
+    max-width: 540px;
+    color: #77827c;
+}
+
+.about-mini-stats {
+    display: flex;
+    gap: 34px;
+    margin-top: 32px;
+}
+
+.about-mini-stats strong {
+    display: block;
+    font-size: 26px;
+    color: #126b45;
+}
+
+.about-mini-stats span {
+    font-size: 11px;
+    color: #93a099;
+}
+
+.about-highlight {
+    background: #10291c;
+    color: white;
+    border-radius: 24px;
+    padding: 36px;
+}
+
+.about-highlight-icon {
+    width: 52px;
+    height: 52px;
+    display: grid;
+    place-items: center;
+    font-size: 22px;
+    background: rgba(255,255,255,.08);
+    border-radius: 16px;
+    margin-bottom: 20px;
+}
+
+.about-highlight h3 {
+    font-size: 20px;
+    margin-bottom: 12px;
+}
+
+.about-highlight > p {
+    font-size: 13px;
+    color: rgba(255,255,255,.6);
+    margin-bottom: 22px;
+}
+
+.about-highlight-list {
+    list-style: none;
+    display: grid;
+    gap: 10px;
+}
+
+.about-highlight-list li {
+    font-size: 13px;
+    font-weight: 600;
+    padding-left: 22px;
+    position: relative;
+}
+
+.about-highlight-list li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #dff54c;
+}
+
+
+/* =====================================================
+BENEFÍCIOS
+===================================================== */
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 18px;
+}
+
+.benefit-card {
+    padding: 30px;
+    background: white;
+    border: 1px solid #e5ece7;
+    border-radius: 20px;
+    transition: .3s;
+}
+
+.benefit-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 20px 45px rgba(20,60,40,.08);
+}
+
+.benefit-card-icon {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.benefit-card h3 {
+    font-size: 19px;
+    margin-bottom: 10px;
+}
+
+.benefit-card p {
+    font-size: 13px;
+    color: #77827c;
+}
+
+
+/* =====================================================
+ANIMAÇÃO SOLAR
+===================================================== */
+
+.solar-animation-section {
+    padding: 110px 0;
+    background: #edf5f0;
+    overflow: hidden;
+}
+
+.solar-animation-container {
+    display: grid;
+    grid-template-columns: .85fr 1.15fr;
+    gap: 70px;
+    align-items: center;
+}
+
+.solar-animation-info h2 {
+    font-size: clamp(38px,5vw,62px);
+    line-height: 1;
+    letter-spacing: -2px;
+}
+
+.solar-animation-info h2 span {
+    color: #126b45;
+}
+
+.solar-animation-info p {
+    margin-top: 22px;
+    max-width: 520px;
+    color: #68756d;
+}
+
+.solar-animation-benefits {
+    display: grid;
+    gap: 12px;
+    margin-top: 28px;
+}
+
+.solar-animation-benefits div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.solar-animation-benefits span {
+    color: #126b45;
+}
+
+
+/* =====================================================
+CENA
+===================================================== */
+
+.solar-scene {
+    position: relative;
+    width: 100%;
+    min-height: 480px;
+    border-radius: 30px;
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            180deg,
+            #bcecff 0%,
+            #e6f8ff 57%,
+            #c7e3b3 57%,
+            #8fb875 100%
+        );
+
+    box-shadow:
+        0 30px 80px rgba(25,75,45,.15);
+}
+
+.solar-sky {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+
+
+/* =====================================================
+SOL
+===================================================== */
+
+.solar-sun {
+    position: absolute;
+    top: 42px;
+    left: 58px;
+
+    width: 78px;
+    height: 78px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #ffe99b,
+            #f5c542 55%,
+            #e7a91e
+        );
+
+    box-shadow:
+        0 0 30px rgba(245,197,66,.65),
+        0 0 75px rgba(245,197,66,.35);
+
+    z-index: 4;
+
+    animation: sunFloat 4s ease-in-out infinite;
+}
+
+@keyframes sunFloat {
+    0%,100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+
+/* RAIOS */
+
+.sun-ray {
+    position: absolute;
+
+    width: 4px;
+    height: 27px;
+
+    border-radius: 10px;
+
+    background: #f5c542;
+
+    transform-origin: 50% 70px;
+
+    animation: rayPulse 2s ease-in-out infinite;
+}
+
+.ray-1 {
+    left: 37px;
+    top: -34px;
+}
+
+.ray-2 {
+    left: 37px;
+    bottom: -34px;
+}
+
+.ray-3 {
+    left: -20px;
+    top: 25px;
+    transform: rotate(90deg);
+}
+
+.ray-4 {
+    right: -20px;
+    top: 25px;
+    transform: rotate(90deg);
+}
+
+.ray-5 {
+    left: 7px;
+    top: -20px;
+    transform: rotate(-45deg);
+}
+
+.ray-6 {
+    right: 7px;
+    top: -20px;
+    transform: rotate(45deg);
+}
+
+.ray-7 {
+    left: 7px;
+    bottom: -20px;
+    transform: rotate(45deg);
+}
+
+.ray-8 {
+    right: 7px;
+    bottom: -20px;
+    transform: rotate(-45deg);
+}
+
+@keyframes rayPulse {
+    0%,100% {
+        opacity: .45;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+
+/* =====================================================
+RAIOS DE LUZ
+===================================================== */
+
+.sun-beam {
+    position: absolute;
+
+    width: 180px;
+    height: 95px;
+
+    left: 95px;
+    top: 105px;
+
+    background: linear-gradient(
+        135deg,
+        rgba(255,214,80,.22),
+        rgba(255,214,80,0)
+    );
+
+    clip-path: polygon(
+        0 0,
+        100% 42%,
+        100% 58%,
+        0 100%
+    );
+
+    transform: rotate(10deg);
+
+    z-index: 2;
+
+    animation: sunlight 3s ease-in-out infinite;
+}
+
+.beam-2 {
+    opacity: .5;
+    animation-delay: .7s;
+}
+
+.beam-3 {
+    opacity: .3;
+    animation-delay: 1.4s;
+}
+
+@keyframes sunlight {
+    0%,100% {
+        opacity: .35;
+    }
+
+    50% {
+        opacity: .75;
+    }
+}
+
+
+/* =====================================================
+NUVENS
+===================================================== */
+
+.solar-cloud {
+    position: absolute;
+
+    width: 100px;
+    height: 28px;
+
+    background: rgba(255,255,255,.8);
+
+    border-radius: 30px;
+
+    opacity: .65;
+
+    z-index: 3;
+}
+
+.solar-cloud::before,
+.solar-cloud::after {
+    content: "";
+    position: absolute;
+    background: inherit;
+    border-radius: 50%;
+}
+
+.solar-cloud::before {
+    width: 42px;
+    height: 42px;
+    left: 18px;
+    bottom: 0;
+}
+
+.solar-cloud::after {
+    width: 52px;
+    height: 52px;
+    right: 10px;
+    bottom: 0;
+}
+
+.cloud-1 {
+    top: 105px;
+    right: 30px;
+    animation: cloudMove1 20s linear infinite;
+}
+
+.cloud-2 {
+    top: 175px;
+    left: 250px;
+    transform: scale(.65);
+    animation: cloudMove2 26s linear infinite;
+}
+
+@keyframes cloudMove1 {
+    from {
+        transform: translateX(40px);
+    }
+
+    to {
+        transform: translateX(-90px);
+    }
+}
+
+@keyframes cloudMove2 {
+    from {
+        transform: translateX(-50px);
+    }
+
+    to {
+        transform: translateX(100px);
+    }
+}
+
+
+/* =====================================================
+CHÃO
+===================================================== */
+
+.solar-ground {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 44%;
+
+    background:
+        radial-gradient(
+            ellipse at 50% 20%,
+            rgba(255,255,255,.15),
+            transparent 55%
+        ),
+        linear-gradient(
+            180deg,
+            #a6ca89,
+            #83aa6d
+        );
+
+    z-index: 1;
+}
+
+
+/* =====================================================
+CASA
+===================================================== */
+
+.solar-house {
+    position: absolute;
+
+    width: 320px;
+    height: 225px;
+
+    left: 47%;
+    bottom: 53px;
+
+    transform: translateX(-50%);
+
+    z-index: 5;
+}
+
+.house-foundation {
+    position: absolute;
+
+    width: 260px;
+    height: 18px;
+
+    left: 30px;
+    bottom: 0;
+
+    background: #c9ad8d;
+
+    transform: skewX(-10deg);
+
+    border-radius: 3px;
+}
+
+
+/* CORPO */
+
+.house-body {
+    position: absolute;
+
+    width: 225px;
+    height: 140px;
+
+    left: 48px;
+    bottom: 17px;
+
+    background: #f8f3e5;
+
+    border: 3px solid #d8d0bd;
+
+    box-shadow:
+        0 15px 30px rgba(30,60,30,.16);
+
+    overflow: hidden;
+}
+
+
+/* TELHADO */
+
+.house-roof {
+    position: absolute;
+
+    width: 280px;
+    height: 135px;
+
+    left: 20px;
+    top: 0;
+
+    background:
+        linear-gradient(
+            145deg,
+            #315873,
+            #1d4059
+        );
+
+    clip-path: polygon(
+        50% 0,
+        100% 62%,
+        94% 72%,
+        50% 30%,
+        6% 72%,
+        0 62%
+    );
+
+    z-index: 8;
+}
+
+
+/* =====================================================
+PLACAS SOLARES
+===================================================== */
+
+.solar-panels {
+    position: absolute;
+
+    width: 184px;
+    height: 78px;
+
+    top: 33px;
+    left: 68px;
+
+    display: grid;
+
+    grid-template-columns: repeat(3,1fr);
+
+    gap: 3px;
+
+    transform:
+        perspective(250px)
+        rotateX(15deg)
+        rotateZ(-4deg)
+        skewX(-5deg);
+
+    z-index: 12;
+
+    filter:
+        drop-shadow(
+            0 7px 8px rgba(0,0,0,.2)
+        );
+}
+
+.solar-panel {
+    position: relative;
+
+    overflow: hidden;
+
+    border: 2px solid #172f40;
+
+    border-radius: 3px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #153d58,
+            #2e7695
+        );
+
+    transition:
+        filter .5s ease,
+        transform .5s ease;
+}
+
+.solar-panel::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent 46%,
+            rgba(255,255,255,.3) 50%,
+            transparent 54%
+        ),
+        linear-gradient(
+            0deg,
+            transparent 46%,
+            rgba(255,255,255,.3) 50%,
+            transparent 54%
+        );
+
+    opacity: .8;
+}
+
+.solar-panel::after {
+    content: "";
+
+    position: absolute;
+
+    width: 70%;
+    height: 20%;
+
+    top: -40%;
+    left: -80%;
+
+    background: rgba(255,255,255,.55);
+
+    transform: rotate(-25deg);
+
+    animation: panelReflection 4s linear infinite;
+}
+
+@keyframes panelReflection {
+    0% {
+        left: -90%;
+    }
+
+    55%,100% {
+        left: 130%;
+    }
+}
+
+.solar-panels.active .solar-panel {
+    filter:
+        brightness(1.25)
+        drop-shadow(
+            0 0 7px rgba(223,245,76,.35)
+        );
+}
+
+
+/* =====================================================
+PORTA
+===================================================== */
+
+.house-door {
+    position: absolute;
+
+    width: 46px;
+    height: 73px;
+
+    left: 91px;
+    bottom: 0;
+
+    background: #76553a;
+
+    border-radius: 4px 4px 0 0;
+
+    z-index: 4;
+}
+
+.house-door span {
+    position: absolute;
+
+    width: 5px;
+    height: 5px;
+
+    border-radius: 50%;
+
+    right: 7px;
+    top: 37px;
+
+    background: #e5c15b;
+}
+
+
+/* =====================================================
+JANELAS
+===================================================== */
+
+.house-window {
+    position: absolute;
+
+    width: 43px;
+    height: 39px;
+
+    bottom: 54px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #76cce5,
+            #b9edf7
+        );
+
+    border: 4px solid #d9d1bb;
+
+    transition:
+        background .5s ease,
+        box-shadow .5s ease;
+}
+
+.window-left {
+    left: 20px;
+}
+
+.window-right {
+    right: 20px;
+}
+
+.house-window::before {
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+    top: 0;
+
+    width: 2px;
+    height: 100%;
+
+    background: #d9d1bb;
+}
+
+.house-window::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 50%;
+
+    width: 100%;
+    height: 2px;
+
+    background: #d9d1bb;
+}
+
+.house-window.active {
+    background:
+        linear-gradient(
+            135deg,
+            #fff4a4,
+            #ffd766
+        );
+
+    box-shadow:
+        0 0 20px rgba(255,215,102,.75);
+}
+
+
+/* =====================================================
+INTERIOR
+===================================================== */
+
+.house-inside {
+    position: absolute;
+
+    left: 75px;
+    top: 50px;
+
+    width: 75px;
+    height: 65px;
+
+    opacity: .7;
+
+    z-index: 2;
+}
+
+.inside-light {
+    position: absolute;
+
+    width: 12px;
+    height: 12px;
+
+    border-radius: 50%;
+
+    background: #ffd95b;
+
+    opacity: 0;
+
+    box-shadow:
+        0 0 18px #ffd95b;
+
+    transition: opacity .5s;
+}
+
+.light-one {
+    left: 8px;
+    top: 10px;
+}
+
+.light-two {
+    right: 8px;
+    top: 10px;
+}
+
+.inside-appliance {
+    position: absolute;
+
+    background: #b78045;
+
+    border-radius: 4px;
+
+    box-shadow:
+        0 3px 8px rgba(0,0,0,.12);
+}
+
+.appliance-one {
+    width: 42px;
+    height: 28px;
+    left: 17px;
+    bottom: 7px;
+}
+
+.appliance-two {
+    width: 18px;
+    height: 22px;
+    right: -5px;
+    bottom: 7px;
+}
+
+.inside-appliance span {
+    position: absolute;
+
+    left: 7px;
+    right: 7px;
+    top: 6px;
+    height: 4px;
+
+    background: #5f8e9e;
+
+    border-radius: 4px;
+}
+
+.house-inside.active .inside-light {
+    opacity: 1;
+}
+
+
+/* =====================================================
+FIO SAINDO DAS PLACAS
+===================================================== */
+
+.solar-wire {
+    position: absolute;
+
+    height: 4px;
+
+    background: #218d58;
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 0 4px rgba(33,141,88,.3);
+
+    z-index: 11;
+}
+
+.wire-from-panels {
+    width: 55px;
+
+    left: 210px;
+    top: 95px;
+
+    transform: rotate(48deg);
+}
+
+.wire-house {
+    width: 105px;
+
+    left: 160px;
+    top: 136px;
+
+    transform:
+        rotate(86deg);
+}
+
+
+/* =====================================================
+FLUXO DE ENERGIA DAS PLACAS
+===================================================== */
+
+.energy-flow {
+    position: absolute;
+
+    width: 10px;
+    height: 10px;
+
+    border-radius: 50%;
+
+    background: #dff54c;
+
+    box-shadow:
+        0 0 6px #dff54c,
+        0 0 14px rgba(223,245,76,.8);
+
+    z-index: 30;
+
+    opacity: 0;
+}
+
+.flow-panel-1 {
+    left: 218px;
+    top: 93px;
+
+    animation:
+        energyPanelPath 2.4s linear infinite;
+}
+
+.flow-panel-2 {
+    left: 224px;
+    top: 93px;
+
+    animation:
+        energyPanelPath 2.4s linear infinite
+        .8s;
+}
+
+.flow-panel-3 {
+    left: 230px;
+    top: 93px;
+
+    animation:
+        energyPanelPath 2.4s linear infinite
+        1.6s;
+}
+
+@keyframes energyPanelPath {
+
+    0% {
+        opacity: 0;
+        transform:
+            translate(0,0)
+            scale(.4);
+    }
+
+    15% {
+        opacity: 1;
+        transform:
+            translate(0,0)
+            scale(1);
+    }
+
+    85% {
+        opacity: 1;
+        transform:
+            translate(-70px,55px)
+            scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform:
+            translate(-90px,72px)
+            scale(.4);
+    }
+}
+
+
+/* =====================================================
+INVERSOR
+===================================================== */
+
+.solar-inverter {
+    position: absolute;
+
+    left: 20px;
+    bottom: 40px;
+
+    width: 62px;
+    height: 78px;
+
+    background: linear-gradient(160deg,#2b3238,#171b1e);
+
+    border-radius: 8px;
+
+    box-shadow: 0 12px 25px rgba(0,0,0,.25);
+
+    z-index: 9;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.inverter-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+}
+
+.inverter-screen span {
+    color: #7dffb0;
+    font-size: 8px;
+    animation: pulseDot 2s infinite;
+}
+
+.inverter-screen strong {
+    color: #dff54c;
+    font-size: 9px;
+    letter-spacing: 1px;
+}
+
+.inverter-bars {
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+    height: 16px;
+}
+
+.inverter-bars i {
+    width: 4px;
+    background: #dff54c;
+    border-radius: 2px;
+    animation: barPulse 1.4s ease-in-out infinite;
+}
+
+.inverter-bars i:nth-child(1) {
+    height: 40%;
+}
+
+.inverter-bars i:nth-child(2) {
+    height: 100%;
+    animation-delay: .2s;
+}
+
+.inverter-bars i:nth-child(3) {
+    height: 65%;
+    animation-delay: .4s;
+}
+
+@keyframes barPulse {
+    0%,100% {
+        opacity: .5;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+.inverter-wire {
+    position: absolute;
+
+    width: 4px;
+    height: 90px;
+
+    left: 51px;
+    bottom: 40px;
+
+    background: #218d58;
+
+    border-radius: 10px;
+
+    z-index: 6;
+}
+
+
+/* =====================================================
+ENERGIA NO CABO PRINCIPAL
+===================================================== */
+
+.main-energy-flow {
+    position: absolute;
+
+    left: 42px;
+    bottom: 40px;
+
+    width: 4px;
+    height: 90px;
+
+    z-index: 7;
+}
+
+.main-energy-flow span {
+    position: absolute;
+
+    left: -3px;
+
+    width: 10px;
+    height: 10px;
+
+    border-radius: 50%;
+
+    background: #dff54c;
+
+    box-shadow:
+        0 0 6px #dff54c,
+        0 0 14px rgba(223,245,76,.8);
+
+    opacity: 0;
+
+    animation: mainFlow 2.4s linear infinite;
+}
+
+.main-energy-flow span:nth-child(2) {
+    animation-delay: .6s;
+}
+
+.main-energy-flow span:nth-child(3) {
+    animation-delay: 1.2s;
+}
+
+.main-energy-flow span:nth-child(4) {
+    animation-delay: 1.8s;
+}
+
+@keyframes mainFlow {
+    0% {
+        opacity: 0;
+        bottom: 90px;
+    }
+
+    15% {
+        opacity: 1;
+    }
+
+    85% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        bottom: 0;
+    }
+}
+
+
+/* =====================================================
+INDICADOR DE ECONOMIA
+===================================================== */
+
+.energy-saving {
+    position: absolute;
+
+    top: 24px;
+    right: 24px;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 10px 16px;
+
+    background: rgba(16,41,28,.85);
+    backdrop-filter: blur(6px);
+
+    border-radius: 14px;
+
+    color: white;
+
+    z-index: 20;
+
+    box-shadow: 0 10px 25px rgba(0,0,0,.15);
+}
+
+.energy-saving-icon {
+    font-size: 18px;
+}
+
+.energy-saving strong {
+    display: block;
+    color: #dff54c;
+    font-size: 15px;
+}
+
+.energy-saving small {
+    font-size: 9px;
+    opacity: .7;
+    letter-spacing: .5px;
+}
+
+
+/* =====================================================
+PARTÍCULAS
+===================================================== */
+
+.solar-particle {
+    position: absolute;
+
+    width: 5px;
+    height: 5px;
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,.85);
+
+    opacity: 0;
+
+    z-index: 6;
+
+    animation: particleFloat 6s ease-in-out infinite;
+}
+
+.particle-1 {
+    left: 20%;
+    top: 30%;
+    animation-delay: 0s;
+}
+
+.particle-2 {
+    left: 65%;
+    top: 20%;
+    animation-delay: 1.5s;
+}
+
+.particle-3 {
+    left: 40%;
+    top: 45%;
+    animation-delay: 3s;
+}
+
+.particle-4 {
+    left: 78%;
+    top: 40%;
+    animation-delay: 4.5s;
+}
+
+@keyframes particleFloat {
+    0%,100% {
+        opacity: 0;
+        transform: translateY(0);
+    }
+
+    50% {
+        opacity: .8;
+        transform: translateY(-18px);
+    }
+}
+
+
+/* =====================================================
+PASSOS
+===================================================== */
+
+.steps {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.step {
+    flex: 1;
+    text-align: center;
+}
+
+.step-number {
+    font-size: 12px;
+    font-weight: 800;
+    color: #dff54c;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.step-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 18px;
+    display: grid;
+    place-items: center;
+    font-size: 24px;
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 16px;
+}
+
+.step h3 {
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+.step p {
+    font-size: 12px;
+    color: rgba(255,255,255,.55);
+    max-width: 190px;
+    margin: 0 auto;
+}
+
+.step-line {
+    flex: 0 0 40px;
+    height: 1px;
+    margin-top: 30px;
+    background: rgba(255,255,255,.15);
+}
+
+
+/* =====================================================
+PROJETOS
+===================================================== */
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 20px;
+}
+
+.project-card {
+    position: relative;
+    min-height: 320px;
+    border-radius: 22px;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    padding: 30px;
+    background:
+        linear-gradient(180deg, rgba(16,41,28,.15), rgba(16,41,28,.9)),
+        linear-gradient(135deg,#173d2b,#0d2418);
+    color: white;
+}
+
+.project-card.commercial {
+    background:
+        linear-gradient(180deg, rgba(16,41,28,.15), rgba(16,41,28,.9)),
+        linear-gradient(135deg,#1c4a35,#10291c);
+}
+
+.project-card.rural {
+    background:
+        linear-gradient(180deg, rgba(16,41,28,.15), rgba(16,41,28,.9)),
+        linear-gradient(135deg,#274f2e,#10291c);
+}
+
+.project-content span {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    color: #dff54c;
+}
+
+.project-content h3 {
+    font-size: 26px;
+    margin: 10px 0 10px;
+}
+
+.project-content p {
+    font-size: 13px;
+    color: rgba(255,255,255,.65);
+    max-width: 260px;
+}
+
+.project-content a {
+    display: inline-block;
+    margin-top: 16px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #dff54c;
+}
+
+
+/* =====================================================
+DEPOIMENTOS
+===================================================== */
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 18px;
+}
+
+.testimonial-card {
+    padding: 28px;
+    background: rgba(255,255,255,.05);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 20px;
+}
+
+.testimonial-card p {
+    font-size: 14px;
+    color: rgba(255,255,255,.75);
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.testimonial-card strong {
+    display: block;
+    font-size: 13px;
+}
+
+.testimonial-card span {
+    font-size: 11px;
+    color: #dff54c;
+}
+
+
+/* =====================================================
+CALCULADORA
+===================================================== */
+
+.calculator-section {
+    padding: 110px 0;
+    background: #10291c;
+    color: white;
+}
+
+.calculator-container {
+    display: grid;
+    grid-template-columns: .8fr 1.2fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.calculator-info h2 {
+    font-size: clamp(34px,4.5vw,52px);
+    line-height: 1.05;
+    letter-spacing: -1.5px;
+}
+
+.calculator-info h2 span {
+    color: #dff54c;
+}
+
+.calculator-info > p {
+    margin-top: 18px;
+    max-width: 420px;
+    color: rgba(255,255,255,.6);
+}
+
+.calculator-features {
+    display: grid;
+    gap: 12px;
+    margin-top: 26px;
+}
+
+.calculator-features div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.calculator-features span {
+    color: #dff54c;
+}
+
+.calculator-card {
+    background: white;
+    color: #10251c;
+    border-radius: 26px;
+    padding: 34px;
+    box-shadow: 0 40px 90px rgba(0,0,0,.35);
+}
+
+.calculator-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 26px;
+}
+
+.calculator-header small {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    color: #126b45;
+}
+
+.calculator-header h3 {
+    font-size: 20px;
+    margin-top: 4px;
+}
+
+.calculator-icon {
+    width: 46px;
+    height: 46px;
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+    background: #edf5f0;
+    border-radius: 14px;
+}
+
+.input-group {
+    margin-bottom: 8px;
+}
+
+.input-group label,
+.simulator-field label,
+.form-group label {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #45524b;
+}
+
+.money-input {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1.5px solid #e5ece7;
+    border-radius: 14px;
+    padding: 12px 16px;
+}
+
+.money-input span {
+    font-weight: 800;
+    color: #126b45;
+}
+
+.money-input input {
+    border: none;
+    outline: none;
+    width: 100%;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.slider-container {
+    margin: 16px 0 26px;
+}
+
+.slider-container input[type="range"] {
+    width: 100%;
+    accent-color: #126b45;
+}
+
+.slider-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: #93a099;
+    margin-top: 6px;
+}
+
+.simulator-field {
+    margin-bottom: 26px;
+}
+
+.property-options {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 8px;
+}
+
+.property-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 14px 8px;
+    border-radius: 14px;
+    border: 1.5px solid #e5ece7;
+    background: white;
+    font-size: 11px;
+    font-weight: 700;
+    color: #45524b;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.property-option span {
+    font-size: 18px;
+}
+
+.property-option.active {
+    border-color: #126b45;
+    background: #edf5f0;
+    color: #126b45;
+}
+
+.calculator-results {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 22px;
+}
+
+.result-item {
+    padding: 16px;
+    background: #f7faf8;
+    border-radius: 14px;
+    border: 1px solid #edf1ee;
+}
+
+.result-item span {
+    display: block;
+    font-size: 11px;
+    color: #77827c;
+    margin-bottom: 6px;
+}
+
+.result-item strong {
+    font-size: 17px;
+    color: #10251c;
+}
+
+.reduction-bar {
+    margin-bottom: 26px;
+}
+
+.reduction-bar-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.reduction-bar-label span:last-child {
+    color: #126b45;
+}
+
+.reduction-bar-track {
+    width: 100%;
+    height: 8px;
+    background: #edf1ee;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.reduction-bar-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg,#126b45,#dff54c);
+    border-radius: 10px;
+    transition: width .5s ease;
+}
+
+.calculator-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.calculator-actions .btn {
+    width: 100%;
+}
+
+
+/* =====================================================
+ORÇAMENTO AUTOMÁTICO
+===================================================== */
+
+.budget-section {
+    background: #edf5f0;
+}
+
+.budget-container {
+    display: grid;
+    grid-template-columns: .8fr 1.2fr;
+    gap: 60px;
+    align-items: flex-start;
+}
+
+.budget-info-list {
+    display: grid;
+    gap: 16px;
+    margin-top: 26px;
+}
+
+.budget-info-item {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+}
+
+.budget-info-item span {
+    flex: 0 0 34px;
+    height: 34px;
+    display: grid;
+    place-items: center;
+    background: white;
+    border-radius: 10px;
+    font-size: 15px;
+}
+
+.budget-info-item strong {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 2px;
+}
+
+.budget-info-item p {
+    font-size: 12px;
+    color: #68756d;
+}
+
+.budget-card {
+    background: white;
+    border-radius: 26px;
+    padding: 34px;
+    box-shadow: 0 25px 60px rgba(20,60,40,.08);
+}
+
+.budget-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group.full {
+    grid-column: 1 / -1;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    border: 1.5px solid #e5ece7;
+    border-radius: 12px;
+    padding: 12px 14px;
+    font-size: 13px;
+    outline: none;
+    transition: border-color .2s;
+    background: white;
+    color: #10251c;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #126b45;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+    line-height: 1.5;
+}
+
+.budget-submit {
+    width: 100%;
+    margin-top: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.budget-email-link {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    background: transparent;
+    border: none;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: #126b45;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.budget-note {
+    margin-top: 14px;
+    font-size: 11px;
+    color: #93a099;
+    text-align: center;
+}
+
+
+/* =====================================================
+FAQ
+===================================================== */
+
+.faq-list {
+    display: grid;
+    gap: 12px;
+}
+
+.faq-item {
+    background: white;
+    border: 1px solid #e5ece7;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.faq-question {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 20px 24px;
+    background: transparent;
+    border: none;
+    text-align: left;
+    font-size: 14px;
+    font-weight: 700;
+    color: #10251c;
+    cursor: pointer;
+}
+
+.faq-icon {
+    flex: 0 0 auto;
+    font-size: 18px;
+    font-weight: 700;
+    color: #126b45;
+    transition: transform .25s ease;
+}
+
+.faq-item.active .faq-icon {
+    transform: rotate(45deg);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    padding: 0 24px;
+    transition: max-height .3s ease, padding .3s ease;
+}
+
+.faq-item.active .faq-answer {
+    max-height: 220px;
+    padding: 0 24px 22px;
+}
+
+.faq-answer p {
+    font-size: 13px;
+    color: #77827c;
+    line-height: 1.6;
+}
+
+
+/* =====================================================
+FOOTER
+===================================================== */
+
+.footer {
+    background: #0d2418;
+    color: rgba(255,255,255,.6);
+    padding: 60px 0 30px;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+.footer-nav {
+    display: flex;
+    gap: 22px;
+    flex-wrap: wrap;
+}
+
+.footer-nav a {
+    font-size: 13px;
+    opacity: .8;
+}
+
+.footer-nav a:hover {
+    opacity: 1;
+    color: #dff54c;
+}
+
+.footer-contact {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 22px;
+    padding: 22px 0;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+.footer-contact-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(255,255,255,.75);
+    transition: .2s;
+}
+
+.footer-contact-item:hover {
+    color: #dff54c;
+}
+
+.footer-contact-item span {
+    font-size: 15px;
+}
+
+.footer-bottom {
+    text-align: center;
+    font-size: 11px;
+    padding-top: 22px;
+    opacity: .6;
+}
+
+
+/* =====================================================
+LUMENS — ASSISTENTE VIRTUAL
+===================================================== */
+
+.lumens-widget {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    z-index: 2000;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 12px;
+}
+
+.lumens-button {
+    width: 62px;
+    height: 62px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    background: #10291c;
+    box-shadow: 0 14px 34px rgba(16,41,28,.35);
+    animation: lumensFloat 3s ease-in-out infinite;
+    transition: transform .2s ease;
+}
+
+.lumens-button:hover {
+    transform: scale(1.06);
+}
+
+@keyframes lumensFloat {
+    0%,100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-6px);
+    }
+}
+
+.lumens-greeting {
+    position: relative;
+    max-width: 230px;
+    background: white;
+    color: #10251c;
+    font-size: 12.5px;
+    font-weight: 600;
+    line-height: 1.5;
+    padding: 14px 30px 14px 16px;
+    border-radius: 16px 16px 4px 16px;
+    box-shadow: 0 14px 34px rgba(16,41,28,.18);
+    animation: lumensPop .4s ease;
+}
+
+.lumens-greeting.hidden {
+    display: none;
+}
+
+.lumens-greeting-close {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 18px;
+    height: 18px;
+    border: none;
+    background: transparent;
+    color: #93a099;
+    font-size: 15px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+@keyframes lumensPop {
+    from {
+        opacity: 0;
+        transform: translateY(8px) scale(.94);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.lumens-panel {
+    position: fixed;
+    right: 24px;
+    bottom: 100px;
+    width: 340px;
+    max-height: 480px;
+    background: white;
+    border-radius: 22px;
+    box-shadow: 0 30px 70px rgba(16,41,28,.3);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(16px) scale(.97);
+    pointer-events: none;
+    transition: opacity .25s ease, transform .25s ease;
+    z-index: 2001;
+}
+
+.lumens-panel.open {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+}
+
+.lumens-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 18px;
+    background: #10291c;
+    color: white;
+}
+
+.lumens-header-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.lumens-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.08);
+    display: grid;
+    place-items: center;
+}
+
+.lumens-header-info strong {
+    display: block;
+    font-size: 13px;
+}
+
+.lumens-header-info small {
+    font-size: 10px;
+    color: rgba(255,255,255,.55);
+}
+
+.lumens-close {
+    border: none;
+    background: transparent;
+    color: rgba(255,255,255,.7);
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.lumens-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: #f7faf8;
+}
+
+.lumens-message {
+    max-width: 85%;
+    padding: 10px 14px;
+    border-radius: 14px;
+    font-size: 12.5px;
+    line-height: 1.55;
+}
+
+.lumens-message.bot {
+    align-self: flex-start;
+    background: white;
+    border: 1px solid #e5ece7;
+    border-bottom-left-radius: 4px;
+    color: #10251c;
+}
+
+.lumens-message.user {
+    align-self: flex-end;
+    background: #126b45;
+    color: white;
+    border-bottom-right-radius: 4px;
+}
+
+.lumens-quick-replies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 10px 18px;
+    border-top: 1px solid #edf1ee;
+}
+
+.lumens-quick-replies button {
+    border: 1px solid #d8e3db;
+    background: white;
+    border-radius: 20px;
+    padding: 7px 12px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #126b45;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.lumens-quick-replies button:hover {
+    background: #edf5f0;
+}
+
+.lumens-input-row {
+    display: flex;
+    gap: 8px;
+    padding: 12px 16px;
+    border-top: 1px solid #edf1ee;
+}
+
+.lumens-input-row input {
+    flex: 1;
+    border: 1.5px solid #e5ece7;
+    border-radius: 12px;
+    padding: 10px 14px;
+    font-size: 12.5px;
+    outline: none;
+}
+
+.lumens-input-row input:focus {
+    border-color: #126b45;
+}
+
+.lumens-input-row button {
+    width: 40px;
+    border: none;
+    border-radius: 12px;
+    background: #dff54c;
+    color: #10251c;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+@media (max-width: 480px) {
+
+    .lumens-widget {
+        right: 16px;
+        bottom: 16px;
+    }
+
+    .lumens-panel {
+        right: 16px;
+        left: 16px;
+        width: auto;
+        bottom: 92px;
+    }
+
+    .lumens-greeting {
+        max-width: 200px;
+    }
+}
+
+
+/* =====================================================
+RESPONSIVO
+===================================================== */
+
+@media (max-width: 960px) {
+
+    .benefits-grid,
+    .stats-container,
+    .project-grid,
+    .testimonials-grid {
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    .solar-animation-container,
+    .calculator-container,
+    .budget-container,
+    .about-container {
+        grid-template-columns: 1fr;
+    }
+
+    .steps {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .step-line {
+        display: none;
+    }
+
+    .budget-form-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 720px) {
+
+    .nav {
+        position: fixed;
+        top: 78px;
+        left: 20px;
+        right: 20px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+        background: white;
+        padding: 20px;
+        border-radius: 16px;
+        box-shadow: 0 20px 45px rgba(0,0,0,.12);
+        transform: translateY(-14px);
+        opacity: 0;
+        pointer-events: none;
+        transition: .25s;
+    }
+
+    .nav.mobile-active {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .header-container .btn-header {
+        display: none;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .benefits-grid,
+    .stats-container,
+    .project-grid,
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .stat {
+        border-right: none;
+        border-bottom: 1px solid #e7eee9;
+    }
+}
